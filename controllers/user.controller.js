@@ -1,19 +1,20 @@
+const User = require('../models/users')
 
 class UserController {
-    static index (req, res) {
-        res.send('Index response')
+    static async index (req, res) {
+        res.send(await new User().getList())
     }
     static create(req, res) {
-        res.send('Create response')
+        // res.send(await User.create(req))
     }
     static read(req, res) {
-        res.send('Read response')
+        // res.send(await User.find(req.params.id))
     }
     static update(req, res) {
-        res.send('Update response')
+        // res.send(await User.save())
     }
     static delete(req, res) {
-        res.send('Delete response')
+        // res.send(await User.delete(req.params.id))
     }
 }
 
