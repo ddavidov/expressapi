@@ -1,8 +1,15 @@
 require('dotenv').config()
+
 const express = require('express')
 const app = express()
-const users = require('./routes/users')
+
 const serviceLocator = require('./services/service.locator')
+
+const auth = require('./routes/auth')
+const users = require('./routes/users')
+
+const passport = require('./auth/passport')
+const authMiddleware = require('./auth/authMiddleware')
 
 // Init services:
 serviceLocator.register('db', require('knex')({
@@ -15,7 +22,12 @@ serviceLocator.register('db', require('knex')({
     }
 }))
 
-// Bind routes:
+app.use(express.json())
+app.use(passport.initialize())
+app.use(authMiddleware)
+
+// Bind app routes:
+app.use(auth);
 app.use('/user', users)
 // app.use('/order', orders)
 // app.use('/product', products)
