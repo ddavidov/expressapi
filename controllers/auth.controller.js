@@ -3,7 +3,9 @@ const passport = require('../auth/passport')
 class AuthController {
     static login (req, res) {
         passport.authenticate('local', { session: false }, (err, user, trace) => {
-            // @TODO: Check for errors and construct the response
+            if(err) {
+                throw new Error(err)
+            }
             res.send(user)
         })(req, res)
     }

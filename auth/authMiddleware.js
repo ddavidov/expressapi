@@ -6,6 +6,7 @@ module.exports = function(req, res, next) {
         (err, user, trace) => {
             // Bind user data to request:
             req.user = user
+
+            next()
         })(req, res, next)
-    next()
 }

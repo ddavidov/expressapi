@@ -1,5 +1,6 @@
 
 const BaseModel = require('./base.model')
+const md5 = require('md5')
 
 class User extends BaseModel {
     constructor() {
@@ -14,8 +15,11 @@ class User extends BaseModel {
      * @returns {null}
      */
     getUserByCredentials(username, password) {
-        // @TODO: Retrieve from database user, matching both: username and password
-        return null;
+        return this.table
+            .select(['name', 'email', 'id'])
+            .where('email', username)
+            .andWhere('password', md5(password))
+            .first()
     }
 
     /**
@@ -24,9 +28,11 @@ class User extends BaseModel {
      * @param token
      * @returns {null}
      */
-    getUserByCredentials(token) {
-        // @TODO: Retrieve from database user, matching token
-        return null;
+    getUserByToken(token) {
+        return this.table
+            .select(['name', 'email', 'id'])
+            .where('token', token)
+            .first()
     }
 }
 

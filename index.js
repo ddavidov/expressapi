@@ -24,6 +24,7 @@ serviceLocator.register('db', require('knex')({
 
 app.use(express.json())
 app.use(passport.initialize())
+
 app.use(authMiddleware)
 
 // Bind app routes:

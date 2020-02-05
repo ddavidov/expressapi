@@ -2,7 +2,7 @@ const User = require('../models/user')
 
 class UserController {
     static async index (req, res) {
-        // console.log('USER FROM REQUEST:', req.user)
+        console.log('USER FROM REQUEST:', req.user)
         res.send(await new User().getList())
     }
     static create(req, res) {
