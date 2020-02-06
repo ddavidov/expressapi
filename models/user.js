@@ -7,6 +7,10 @@ class User extends BaseModel {
         super('users')
     }
 
+    getList() {
+        return this.table.select(['id', 'name', 'email'])
+    }
+
     /**
      * Get user, matching both: username and password
      *
@@ -30,7 +34,7 @@ class User extends BaseModel {
      */
     getUserByToken(token) {
         return this.table
-            .select(['name', 'email', 'id'])
+            .select(['role', 'name', 'email', 'id'])
             .where('token', token)
             .first()
     }

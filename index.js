@@ -34,5 +34,12 @@ app.use('/user', users)
 // app.use('/product', products)
 // app.use('/category', categories)
 
+// Error handling:
+app.use(function(err, req, res, next){
+    res.status(500).send({
+        message: err.toString()
+    })
+})
+
 // Start app:
 app.listen(process.env.APP_PORT, () => console.log(`API listening on port ${process.env.APP_PORT}!`))
