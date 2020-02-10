@@ -19,10 +19,7 @@ class AuthController {
     }
 
     static async register (req, res) {
-        passport.authenticate('local', { session: false }, (err, user, trace) => {
-            // @TODO: Check for errors and construct the response
-            res.send(user)
-        })(req, res)
+        // @TODO: Implement this
     }
 }
 
